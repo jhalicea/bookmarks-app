@@ -26,6 +26,11 @@ h3 {
 
 }
 
+.app-link:hover {
+    cursor: pointer;
+    color: tomato;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -68,6 +73,9 @@ body {
     border: 0;
     color: teal;
     background-color: #fff;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
 }
 
 #filter-by-raiting {
@@ -197,4 +205,12 @@ fieldset {
     position:relative;
     top:2px;
     left:2px;
+}
+
+
+@media all and (min-width: 520px) {
+    body {
+        width: 520px;
+        margin: auto;
+    }
 }

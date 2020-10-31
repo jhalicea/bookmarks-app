@@ -1,37 +1,54 @@
-const db = {
-  bookmarks: [
-    {
-      id: 'x56w',
-      title: 'Google',
-      rating: 5,
-      url: 'http://www.title1.com',
-      description: 'lorem ipsum dolor sit',
-      expanded: false
-    },
-    {
-      id: '6ffw',
-      title: 'Amazon',
-      rating: 2,
-      url: 'http://www.title2.com',
-      description: 'dolorum tempore deserunt',
-      expanded: false
-    }
-    {
-        id: '33xz',
-        title: 'eBay',
-        rating: 4,
-        url: 'http://www.title2.com',
-        description: 'dolorum tempore deserunt',
-        expanded: false
-      } 
-  ],
+const STORE = {
+  bookmarks: [],
   adding: false,
+  editing: false,
   error: null,
   filter: 0
 };
 
+// STORE MANAGEMENT FUNCTIONS
+
+const addBookmarks = function (bookmark) {
+  this.STORE.bookmarks.push(bookmark);
+};
+
+const storeDeleteBookmark = function (id) {
+  let index = STORE.bookmarks.indexOf(id);
+  STORE.bookmarks.splice(index, 1);
+  console.log(STORE.bookmarks);
+};
+
+// API MANAGEMENT FUNCTIONS
+
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/jhalicea';
+
+const getBookmarks = function () {
+  return fetch(`${BASE_URL}/bookmarks`);
+};
+
+const createBookmark = function (jsonData) {
+  return fetch(`${BASE_URL}/bookmarks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: jsonData,
+  });
+};
+
+const deleteBookmark = function (id) {
+  return fetch(`${BASE_URL}/bookmarks/${id}`, {
+    method: 'DELETE'
+  });
+};
 
 
-default export {
 
-}
+export  default {
+  STORE,
+  getBookmarks,
+  addBookmarks,
+  createBookmark,
+  deleteBookmark,
+  storeDeleteBookmark,
+};
